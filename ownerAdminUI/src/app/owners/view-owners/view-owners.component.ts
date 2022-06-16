@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Owner } from 'src/app/model/ui-models/owner.model';
 import { OwnerService } from '../owner.service';
@@ -19,7 +20,8 @@ export class ViewOwnersComponent implements OnInit {
   }
 
 
-  constructor(private readonly ownerService : OwnerService, private readonly route: ActivatedRoute) { }
+  constructor(private readonly ownerService : OwnerService, private readonly route: ActivatedRoute,
+    private matSnack:MatSnackBar) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
@@ -32,6 +34,17 @@ export class ViewOwnersComponent implements OnInit {
             }
           );
         }
+      }
+    );
+  }
+
+  onUpdate() : void{
+    this.ownerService.updateOwner(this.owner.ownerId, this.owner).subscribe(
+      (successResponse)=>{
+        this.matSnack.open('Owner updated succesfully',undefined,{duration: 2000});
+      },
+      (errorResponse)=>{
+
       }
     );
   }
