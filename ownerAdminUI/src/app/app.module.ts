@@ -50,12 +50,14 @@ import { TopNavComponent } from './layout/top-nav/top-nav.component';
 import { OwnersComponent } from './owners/owners.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ViewOwnersComponent } from './owners/view-owners/view-owners.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopNavComponent,
-    OwnersComponent
+    OwnersComponent,
+    ViewOwnersComponent
   ],
   imports: [
     FormsModule,

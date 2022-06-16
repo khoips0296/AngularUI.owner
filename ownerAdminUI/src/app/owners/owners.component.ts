@@ -13,7 +13,7 @@ import { OwnerService } from './owner.service';
 export class OwnersComponent implements OnInit {
 
   owners : Owner[] = [];
-  displayedColumns: string[] = ['ownerId','name','dateOfBirth','address'];
+  displayedColumns: string[] = ['ownerId','name','dateOfBirth','address','edit'];
   dataSource: MatTableDataSource<Owner> = new MatTableDataSource<Owner>();
   @ViewChild(MatPaginator) matPaginator!: MatPaginator;
   @ViewChild(MatSort) matSort!: MatSort;

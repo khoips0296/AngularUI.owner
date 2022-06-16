@@ -13,4 +13,9 @@ export class OwnerService {
   getOwners() : Observable<Owner[]>{
     return this.httpClient.get<Owner[]>(this.baseApiUrl + '/api/owner');
   }
+
+  getOwner(ownerId : string) : Observable<Owner>{
+    return this.httpClient.get<Owner>(this.baseApiUrl + '/api/owner/' + ownerId);
+  }
+
 }
