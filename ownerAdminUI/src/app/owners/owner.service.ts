@@ -29,4 +29,9 @@ export class OwnerService {
     return this.httpClient.put<Owner>(this.baseApiUrl + '/api/owner/' + ownerId, UpdateOwnerRequest);
   }
 
+  deleteOwner(ownerId : string) : Observable<Owner>{
+    return this.httpClient.delete<Owner>(this.baseApiUrl + '/api/owner/' + ownerId);
+  }
+
+
 }

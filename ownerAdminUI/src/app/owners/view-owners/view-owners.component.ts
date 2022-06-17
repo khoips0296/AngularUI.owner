@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Owner } from 'src/app/model/ui-models/owner.model';
 import { OwnerService } from '../owner.service';
 
@@ -21,7 +21,7 @@ export class ViewOwnersComponent implements OnInit {
 
 
   constructor(private readonly ownerService : OwnerService, private readonly route: ActivatedRoute,
-    private matSnack:MatSnackBar) { }
+    private matSnack:MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
@@ -42,6 +42,24 @@ export class ViewOwnersComponent implements OnInit {
     this.ownerService.updateOwner(this.owner.ownerId, this.owner).subscribe(
       (successResponse)=>{
         this.matSnack.open('Owner updated succesfully',undefined,{duration: 2000});
+      },
+      (errorResponse)=>{
+
+      }
+    );
+  }
+
+  onDelete() : void{
+    //delete method
+    this.ownerService.deleteOwner(this.owner.ownerId).subscribe(
+      (successResponse)=>{
+        this.matSnack.open('Owner deleted succesfully',undefined,{
+          duration:2000
+        });
+
+        setTimeout(() => {
+          this.router.navigateByUrl('owner')
+        }, 2000);
       },
       (errorResponse)=>{
 
