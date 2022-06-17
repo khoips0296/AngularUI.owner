@@ -4,10 +4,10 @@ import { OwnersComponent } from './owners/owners.component';
 import { ViewOwnersComponent } from './owners/view-owners/view-owners.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: OwnersComponent
-  },
+  // {
+  //   path: '',
+  //   component: OwnersComponent
+  // },
   {
     path: 'owner',
     component: OwnersComponent

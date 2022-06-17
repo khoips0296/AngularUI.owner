@@ -1,6 +1,6 @@
 <div class="page-header">
   <div class="container">
-    <h1>View Owners</h1>
+    <h1>{{header}}</h1>
   </div>
 </div>
 <div class="container">
@@ -53,13 +53,54 @@
               <input type="text" matInput [(ngModel)]="owner.address" name="address">
             </mat-form-field>
           </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">
+            <!-- Tỉnh / Thành Phố: -->
+            <mat-form-field appearance="outline">
+              <mat-label>City</mat-label>
+              <mat-select id="city" (selectionChange)="changeCity($event)">
+                <mat-option *ngFor="let data of vietnamData" value="{{ data.city }}">{{ data.city }}</mat-option>
+              </mat-select>
+
+            </mat-form-field>
+            <!-- <select id="city" (change)="changeCity($event)">
+              <option *ngFor="let data of vietnamData" value="{{ data.city }}">
+                {{ data.city }}
+              </option>
+            </select> -->
+          </div>
+          <div class="col-xs-6">
+            <!-- Quận / Huyện: -->
+            <mat-form-field appearance="outline">
+              <mat-label>District</mat-label>
+              <mat-select id="district" (selectionChange)="fillAddress($event)" value="{{selected}}">
+                <mat-option *ngFor="let district of districts" value="{{ district }}">{{ district }}</mat-option>
+              </mat-select>
+
+            </mat-form-field>
+            <!-- <select id="district" (change)="fillAddress($event)">
+              <option *ngFor="let district of districts" value="{{ district }}">
+                {{ district }}
+              </option>
+            </select> -->
+          </div>
         </div>
 
         <div class="row">
           <div class="col-xs-12">
-            <button mat-raised-button color="primary" (click)="onUpdate()">Save</button>
-            <button mat-raised-button color="warn" (click)="onDelete()" class="ml-1">Delete</button>
+            <div class="row" *ngIf="!isNewOwner">
+              <button mat-raised-button color="primary" (click)="onUpdate()">Save</button>
+              <button mat-raised-button color="warn" (click)="onDelete()" class="ml-1">Delete</button>
+            </div>
+            <div class="row" *ngIf="isNewOwner">
+              <button mat-raised-button color="primary" (click)="onAddNew()">Add</button>
+
+            </div>
           </div>
+
         </div>
 
       </form>
